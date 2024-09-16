@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { auth_base_url } from '../utils/base_url'; // Assuming you have this for base URL
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -40,7 +40,8 @@ function Login() {
         e.preventDefault();
 
         if (validateForm()) {
-            const userData = { email: formData.email, password: formData.password };
+            const formData = new FormData(e.target)
+            const userData = Object.fromEntries(formData.entries())
 
             try {
                 const { data } = await axios.post(`${auth_base_url}/login`, userData);
@@ -60,16 +61,16 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col min-w-96">
+        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-[80vh] gap-2">
             <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
-                className="border p-2 rounded"
+                className="border p-2 rounded w-96"
             />
-            {errors.email && <p className="text-red-500 text-xs mb-2 ml-2">{errors.email}</p>}
+            {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
 
             <input
                 type="password"
@@ -77,13 +78,16 @@ function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
-                className="border p-2 rounded"
+                className="border p-2 rounded w-96"
             />
-            {errors.password && <p className="text-red-500 text-xs mb-2 ml-2">{errors.password}</p>}
+            {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
 
-            {errors.axiosError && <p className="text-red-500 text-xs mb-2 ml-2">{errors.axiosError}</p>}
+            {errors.axiosError && <p className="text-red-500 text-xs">{errors.axiosError}</p>}
 
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded">Login</button>
+            <div className="my-4">
+                <Link to='/signup'>Don't have an account?<span className="text-blue-800 font-semibold px-1">Signup</span></Link>
+            </div>
+            <button type="submit" className="bg-blue-500 text-white px-5 py-2 rounded table mx-auto">Login</button>
         </form>
     );
 }

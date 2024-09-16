@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React , {useState} from 'react'
 import { auth_base_url } from '../utils/base_url';
+import { Link } from 'react-router-dom';
 
 function Signup() {
     const [formData, setFormData] = useState({
@@ -70,25 +71,25 @@ function Signup() {
     }
 
   return (
-      <form onSubmit={handleSubmit} className="flex flex-col min-w-96">
+      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-[80vh] gap-2">
           <input
               type="text"
               name="username"
               value={formData.username}
               onChange={handleChange}
               placeholder="Username"
-              className="border p-2 rounded"
+              className="border p-2 rounded w-96"
           />
-          {errors.username && <p className='text-red-500 text-xs mb-2 ml-2'>{errors.username}</p>}
+          {errors.username && <p className='text-red-500 text-xs'>{errors.username}</p>}
           <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="border p-2 rounded"
+              className="border p-2 rounded w-96"
           />
-          {errors.email && <p className='text-red-500 text-xs mb-2 ml-2'>{errors.email}</p>}
+          {errors.email && <p className='text-red-500 text-xs'>{errors.email}</p>}
 
           <input
               type="password"
@@ -96,12 +97,17 @@ function Signup() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
-              className="border p-2 rounded"
+              className="border p-2 rounded w-96"
           />
-          {errors.password && <p className='text-red-500 text-xs mb-2 ml-2'>{errors.password}</p>}
-          {errors.axiosError && <p className='text-red-500 text-xs mb-2 ml-2'>{errors.axiosError}</p>}
-
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded">Sign Up</button>
+          {errors.password && <p className='text-red-500 text-xs'>{errors.password}</p>}
+          {errors.axiosError && <p className='text-red-500 text-xs'>{errors.axiosError}</p>}
+          <div className="my-1">
+              <Link to="/login">
+                  Already have an account?{" "}
+                  <span className="text-blue-800 font-semibold">Login</span>
+              </Link>
+          </div>
+          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded table mx-auto">Sign Up</button>
       </form>
   )
 }
