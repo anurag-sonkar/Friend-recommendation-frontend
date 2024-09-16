@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { user_base_url } from '../utils/base_url';
 import { getConfig } from '../utils/config';
+import { Button } from 'antd';
 
 const SearchUsers = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -31,21 +32,21 @@ const SearchUsers = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSearch} className="mb-4">
+        <div className='w-full'>
+            <form onSubmit={handleSearch} className="mb-4 flex">
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search by username or email"
-                    className="border p-2 rounded"
+                    className="border p-2 rounded w-full"
                 />
-                <button type="submit" className="ml-2 bg-blue-500 text-white p-2 rounded">
+                <button type="submit" className="ml-2 bg-blue-500 text-white px-4 rounded">
                     Search
                 </button>
             </form>
 
-            {searchResults.length > 0 && (
+            {/* {searchResults.length > 0 && (
                 <ul>
                     {searchResults.map((user) => (
                         <li key={user._id} className="mb-2">
@@ -59,7 +60,26 @@ const SearchUsers = () => {
                         </li>
                     ))}
                 </ul>
-            )}
+            )} */}
+
+            {
+                searchResults.length > 0 && (
+                    <div className='flex flex-col gap-2'> 
+                        {
+                            searchResults.map((user)=><div className='grid grid-cols-3 items-center shadow-xl px-2 py-4 rounded-md'>
+                            <div className='col-span-2'>
+                                <div className='font-semibold'>{user.username}</div>
+                                <div className='text-gray-400'>{user.email}</div>
+                            </div>
+                            <div>
+                                <Button danger type='primary' className='px-2'>Send Request</Button>
+                            </div>
+
+                            </div>)
+                        }
+                    </div>
+                )
+            }
         </div>
     );
 };
