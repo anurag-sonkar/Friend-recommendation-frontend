@@ -29,7 +29,7 @@ const FriendRecommendations = () => {
     };
 
     return (
-        <div className="mt-6">
+        <div className="">
             <h2 className="text-lg font-bold mb-4">Friend Recommendations</h2>
             {recommendations.length > 0 ? (
                 <ul>

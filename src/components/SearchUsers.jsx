@@ -66,13 +66,13 @@ const SearchUsers = () => {
                 searchResults.length > 0 && (
                     <div className='flex flex-col gap-2'> 
                         {
-                            searchResults.map((user)=><div className='grid grid-cols-3 items-center shadow-xl px-2 py-4 rounded-md'>
+                            searchResults.map((user)=><div className='grid grid-cols-3 items-center shadow-md px-2 py-4 rounded-md border'>
                             <div className='col-span-2'>
                                 <div className='font-semibold'>{user.username}</div>
                                 <div className='text-gray-400'>{user.email}</div>
                             </div>
-                            <div>
-                                <Button danger type='primary' className='px-2'>Send Request</Button>
+                            <div className=''>
+                                    <Button danger type='primary' className='px-2' onClick={() => handleSendFriendRequest(user._id)}>Send Request</Button>
                             </div>
 
                             </div>)

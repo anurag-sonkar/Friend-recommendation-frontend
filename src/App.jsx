@@ -18,7 +18,7 @@ function App() {
   //   , [navigate]
   // )
   return (
-    <div className="h-screen bg-gray-100">
+   
       
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -27,7 +27,6 @@ function App() {
           <Route path='/login' element={<Login />} />
         </Route>
       </Routes>
-    </div>
   );
 }
 
