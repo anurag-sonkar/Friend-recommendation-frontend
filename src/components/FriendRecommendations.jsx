@@ -32,19 +32,22 @@ const FriendRecommendations = () => {
         <div className="">
             <h2 className="text-lg font-bold mb-4">Friend Recommendations</h2>
             {recommendations.length > 0 ? (
-                <ul>
+                <div>
                     {recommendations?.map((recommendation) => (
-                        <li key={recommendation?.userId} className="mb-2">
-                            {recommendation?.username} - {recommendation?.mutualFriends} mutual friends
+                        <div key={recommendation?.userId} className="grid grid-cols-3 items-center shadow-md px-2 py-4 rounded-md border">
+                            <div className='col-span-2 pl-2'> 
+                                <div className='font-semibold'>{recommendation?.username}</div>
+                                <div className='text-gray-400'>{recommendation?.mutualFriends} mutual connection</div>
+                            </div>
                             <button
                                 onClick={() => handleSendFriendRequest(recommendation?.userId)}
                                 className="ml-4 text-blue-500"
                             >
-                                Send Friend Request
+                                Send Request
                             </button>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             ) : (
                 <p>No friend recommendations available.</p>
             )}
