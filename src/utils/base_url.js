@@ -1,3 +1,6 @@
+// export const connection_url = "http://localhost:5000"
+// export const auth_base_url = "http://localhost:5000/auth"
+// export const user_base_url = "http://localhost:5000/user"
 export const connection_url = "https://friend-recommendation.onrender.com/"
 export const auth_base_url = "https://friend-recommendation.onrender.com/auth"
 export const user_base_url = "https://friend-recommendation.onrender.com/user"
