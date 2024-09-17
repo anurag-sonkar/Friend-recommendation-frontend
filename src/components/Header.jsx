@@ -20,12 +20,18 @@ function Header() {
       {
         user !== null && <Slider />
       }
-      <h1 className="text-4xl font-bold table mx-auto py-2">Welcome
-        {
-          user ? <span className='text-blue-600'> {user.username.split(" ")[0]} <span className='text-black'>to MERN Friend App!</span> </span> : " to MERN Friend App!"
-        }
-
+      <h1 className="lg:text-4xl text-2xl font-bold table mx-auto py-4">
+        {user ? (
+          <>
+            Hi! <span className="text-blue-600">{user.username.split(" ")[0]}</span>
+          </>
+        ) : (
+          <>
+              <div className='text-[1.4rem]'>Welcome to MERN Friend App!</div>
+          </>
+        )}
       </h1>
+
       {
         user !== null && <div className='flex items-center gap-4 justify-center'>
           <Notification />

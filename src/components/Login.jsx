@@ -61,6 +61,13 @@ function Login() {
         }
     };
 
+    const setUpGuestCredentials = ()=>{
+        setFormData({
+            email : "anurag@gmail.com",
+            password : "123"
+        })
+    }
+
     return (
         <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-[80vh] gap-2">
             <input
@@ -69,7 +76,7 @@ function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
-                className="border p-2 rounded w-96"
+                className="border p-2 rounded lg:w-96 w-80"
             />
             {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
 
@@ -79,7 +86,7 @@ function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
-                className="border p-2 rounded w-96"
+                className="border p-2 rounded lg:w-96 w-80"
             />
             {errors.password && <p className="text-red-500 text-xs">{errors.password}</p>}
 
@@ -88,7 +95,10 @@ function Login() {
             <div className="my-4">
                 <Link to='/signup'>Don't have an account?<span className="text-blue-800 font-semibold px-1">Signup</span></Link>
             </div>
-            <button type="submit" className="bg-blue-500 text-white px-5 py-2 rounded table mx-auto">Login</button>
+            <div className='flex gap-5'>
+                <button onClick={setUpGuestCredentials} className="bg-red-500 text-white px-5 py-2 rounded table mx-auto">Login with guest credentials</button>
+                <button type="submit" className="bg-blue-500 text-white px-5 py-2 rounded table mx-auto">Login</button>
+            </div>
         </form>
     );
 }

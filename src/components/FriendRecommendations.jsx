@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { user_base_url } from '../utils/base_url';
 import { getConfig } from '../utils/config';
+import { SendOutlined } from '@ant-design/icons';
 
 const FriendRecommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
@@ -20,7 +21,8 @@ const FriendRecommendations = () => {
             await axios.post(`${user_base_url}/send-request`, { recipientId: userId }, getConfig());
             alert('Friend request sent successfully');
         } catch (error) {
-            console.error('Error sending friend request:', error);
+            console.error('Error sending friend request:', error.response.data.message);
+            alert(error?.response?.data?.message || "something went wrong")
         }
     };
     
@@ -31,7 +33,7 @@ const FriendRecommendations = () => {
 
     return (
         <div className="">
-            <h2 className="text-lg font-bold mb-4">Friend Recommendations</h2>
+            <h2 className="lg:text-2xl md:text-xl text-2xl font-bold py-3">Friend Recommendations</h2>
             {recommendations?.length > 0 ? (
                 <div>
                     {recommendations?.map((recommendation) => (
@@ -44,7 +46,7 @@ const FriendRecommendations = () => {
                                 onClick={() => handleSendFriendRequest(recommendation?.userId)}
                                 className="ml-4 text-blue-500"
                             >
-                                Send Request
+                                <SendOutlined style={{fontSize:"2rem"}}/>
                             </button>
                         </div>
                     ))}

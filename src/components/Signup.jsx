@@ -80,7 +80,7 @@ function Signup() {
               value={formData.username}
               onChange={handleChange}
               placeholder="Username"
-              className="border p-2 rounded w-96"
+              className="border p-2 rounded lg:w-96 w-80"
           />
           {errors.username && <p className='text-red-500 text-xs'>{errors.username}</p>}
           <input
@@ -89,7 +89,7 @@ function Signup() {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="border p-2 rounded w-96"
+              className="border p-2 rounded lg:w-96 w-80"
           />
           {errors.email && <p className='text-red-500 text-xs'>{errors.email}</p>}
 
@@ -99,7 +99,7 @@ function Signup() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
-              className="border p-2 rounded w-96"
+              className="border p-2 rounded lg:w-96 w-80"
           />
           {errors.password && <p className='text-red-500 text-xs'>{errors.password}</p>}
           {errors.axiosError && <p className='text-red-500 text-xs'>{errors.axiosError}</p>}

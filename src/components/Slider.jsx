@@ -13,7 +13,8 @@ const Slider = () => {
     };
     return (
         <>
-            <Button icon={<SearchOutlined />} onClick={showDrawer}>Search User</Button>
+            <Button icon={<SearchOutlined />} onClick={showDrawer} className='lg:block hidden'>Search User</Button>
+            <Button icon={<SearchOutlined />} onClick={showDrawer} className='lg:hidden block'></Button>
             <Drawer title="Search Users" onClose={onClose} open={open} placement="left">
                 <SearchUsers />
             </Drawer>

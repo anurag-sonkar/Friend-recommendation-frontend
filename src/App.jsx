@@ -35,7 +35,7 @@ function App() {
       }
     }
     
-  }, [user]); // Rerun when 'user' changes
+  }, [user])
 
 
   return (

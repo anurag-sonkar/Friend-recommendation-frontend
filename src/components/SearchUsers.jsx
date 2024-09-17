@@ -17,19 +17,19 @@ const SearchUsers = () => {
     
 
 
-    const handleFetchUsers =async ()=>{
+    const handleFetchUsers = async (reset = false) => {
         try {
             const { data } = await axios.get(`${user_base_url}/search?query=${searchTerm}&page=${page}&limit=${limit}`, getConfig());
-            setSearchResults(data.users);
+            setSearchResults(prevResults => reset ? data.users : [...prevResults, ...data.users]);
         } catch (error) {
             console.error('Error searching users:', error);
         }
     }
+
     const handleSearch = (e) => {
         e.preventDefault();
-        setPage(1)
-        handleFetchUsers()
-        
+        setPage(1);
+        handleFetchUsers(true); // to reset the resultss paas true
     };
 
     const handleSendFriendRequest = async (userId) => {
@@ -42,10 +42,17 @@ const SearchUsers = () => {
         }
     };
 
-    const handleLoadMore = ()=>{
-        setPage(prev => prev + 1)
-        handleFetchUsers()
+    const handleLoadMore = () => {
+        setPage(prev => prev + 1);
+        // handleFetchUsers();
     }
+
+
+    useEffect(() => {
+        if (page > 1) {
+            handleFetchUsers();
+        }
+    }, [page]);
 
     
 
