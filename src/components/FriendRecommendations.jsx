@@ -32,7 +32,7 @@ const FriendRecommendations = () => {
     return (
         <div className="">
             <h2 className="text-lg font-bold mb-4">Friend Recommendations</h2>
-            {recommendations.length > 0 ? (
+            {recommendations?.length > 0 ? (
                 <div>
                     {recommendations?.map((recommendation) => (
                         <div key={recommendation?.userId} className="grid grid-cols-3 items-center shadow-md px-2 py-4 rounded-md border">

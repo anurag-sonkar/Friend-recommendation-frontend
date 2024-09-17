@@ -9,12 +9,13 @@ import io from 'socket.io-client';
 // const socket = io("http://localhost:5000");
 
 function App() {
-  const { user,socket, setSocket, setOnlineUsers } = useUserState(); // user should be available after login/signup
+  const { user, socket, setSocket, setOnlineUsers, notifications, setNotifications } = useUserState(); // user should be available after login/signup
+  console.log(notifications)
 
   useEffect(() => {
     if(user){
       const socket = io("http://localhost:5000" , {
-        query : {userId : user._id}
+        query : {userId : user?._id}
       })
 
       setSocket(socket)
@@ -23,54 +24,21 @@ function App() {
         setOnlineUsers(onlineUsers)
       })
 
+      socket.on('friend-request', ({ notification }) => {
+        setNotifications(prevNotifications => [notification, ...prevNotifications]);
+      });
+
       return ()=>socket.close()
-      
     }else{
       if(socket){
         socket.close()
         setSocket(null)
       }
     }
-
-
-
-
-
-    // Only emit the 'register' event if the user is authenticated
-    //  if(user){
-    //    socket.on("connect", () => {
-
-    //      socket.emit('register', user._id); 
-        
-    //       }
-    //     ) // Emit user ID after authentication
-    //     console.log("Socket connected, user registered:", user._id);
-    //  }
-
-    // socket.on("disconnect", () => {
-    //   console.log("Socket disconnected");
-    // });
-
-    // socket.on('friend-request', (data) => {
-    //   console.log('Notification received:', data);
-    //   alert(data.message);
-    // });
-
-    // return () => {
-    //   socket.disconnect(); // Cleanup on component unmount
-    // };
+    
   }, [user]); // Rerun when 'user' changes
 
-  // const navigate = useNavigate()
 
-  // useEffect(
-  //   () => {
-  //     if (userInfo !== null)
-  //       navigate('/')
-      
-  //   }
-  //   , [navigate]
-  // )
   return (
    
       

@@ -9,18 +9,17 @@ const FriendList = () => {
     const [friends, setFriends] = useState([]);
     const [expandFriendInfo, setExpandFriendInfo] = useState(null)
     const { onlineUsers } = useUserState()
-    console.log(onlineUsers)
 
+    const fetchFriends = async () => {
+        try {
+            const { data } = await axios.get(`${user_base_url}/friends`, getConfig());
+            console.log(data)
+            setFriends(data.friends);
+        } catch (error) {
+            console.error('Error fetching friend list:', error);
+        }
+    };
     useEffect(() => {
-        const fetchFriends = async () => {
-            try {
-                const { data } = await axios.get(`${user_base_url}/friends`, getConfig());
-                console.log(data)
-                setFriends(data.friends);
-            } catch (error) {
-                console.error('Error fetching friend list:', error);
-            }
-        };
 
         fetchFriends();
     }, []);
