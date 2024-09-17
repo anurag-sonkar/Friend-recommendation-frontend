@@ -7,13 +7,14 @@ import Layout from './components/Layout';
 import { useUserState } from './Context/UserProvider';
 import io from 'socket.io-client';
 import ProtectedRoutes from './routing/ProtectedRoutes';
+import { connection_url } from './utils/base_url';
 
 function App() {
   const { user, socket, setSocket, setOnlineUsers, setNotifications } = useUserState(); 
 
   useEffect(() => {
     if(user){
-      const socket = io("http://192.168.43.195:5000" , {
+      const socket = io(connection_url , {
         query : {userId : user?._id}
       })
 

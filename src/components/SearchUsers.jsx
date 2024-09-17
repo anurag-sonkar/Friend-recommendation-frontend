@@ -12,9 +12,6 @@ const SearchUsers = () => {
     const [page , setPage] = useState(1)
     const limit = 5
     const maxPage = Math.ceil((searchResults?.length / limit)) + 1
-    console.log("maxPage" , maxPage)
-
-    
 
 
     const handleFetchUsers = async (reset = false) => {
@@ -22,7 +19,7 @@ const SearchUsers = () => {
             const { data } = await axios.get(`${user_base_url}/search?query=${searchTerm}&page=${page}&limit=${limit}`, getConfig());
             setSearchResults(prevResults => reset ? data.users : [...prevResults, ...data.users]);
         } catch (error) {
-            console.error('Error searching users:', error);
+            // console.error('Error searching users:', error);
         }
     }
 

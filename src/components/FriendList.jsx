@@ -13,7 +13,7 @@ const FriendList = () => {
     const fetchFriends = async () => {
         try {
             const { data } = await axios.get(`${user_base_url}/friends`, getConfig());
-            console.log(data);
+            // console.log(data);
             setFriends(data.friends);
         } catch (error) {
             console.error('Error fetching friend list:', error);
