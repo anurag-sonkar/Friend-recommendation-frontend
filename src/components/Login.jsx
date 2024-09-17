@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { auth_base_url } from '../utils/base_url'; // Assuming you have this for base URL
 import { Link, useNavigate } from 'react-router-dom';
+import { useUserState } from '../Context/UserProvider';
 
 function Login() {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
-
+    // const { setUser } = useUserState()
     const [errors, setErrors] = useState({});
     const navigate = useNavigate()
 
@@ -48,9 +49,9 @@ function Login() {
                 console.log(data)
                 // Store token in localStorage
                 localStorage.setItem('user-info', JSON.stringify(data));
-                alert('Login successful');
-                
                 navigate('/')
+                // alert('Login successful');
+                
             } catch (error) {
                 setErrors({
                     ...errors,

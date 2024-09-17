@@ -9,31 +9,18 @@ export const useUserState = ()=> {
 }
 
 const UserContextProvider = (props)=>{
-    const [user , setUser] = useState()
+    const [user , setUser] = useState(null)
     const [socket , setSocket] = useState()
     const [onlineUsers , setOnlineUsers] = useState()
     const [notifications , setNotifications] = useState([])
+    const navigate = useNavigate()
     
-    // const navigate = useNavigate()
-
-//     useEffect(
-//         ()=>{
-//   const userInfo = JSON.parse(localStorage.getItem('user-info'))
-// //   console.log(userInfo)
-//             setUser(userInfo)
-
-//             if(userInfo){
-//                 navigate('/')
-//             }
-//         },[navigate]
-//     )
-
-
 useEffect(
     ()=>{
         const userInfo = JSON.parse(localStorage.getItem('user-info'))
         setUser(userInfo)
-    },[]
+        if(userInfo) navigate('/')
+    },[navigate]
 )
 
     return <UserContext.Provider value={{ user, setUser, socket, setSocket, onlineUsers, setOnlineUsers, notifications, setNotifications }}>

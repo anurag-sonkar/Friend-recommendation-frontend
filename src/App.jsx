@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Signup from './components/signup';
 import Login from './components/Login';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import { useUserState } from './Context/UserProvider';
 import io from 'socket.io-client';
-// const socket = io("http://localhost:5000");
+import ProtectedRoutes from './routing/ProtectedRoutes';
 
 function App() {
-  const { user, socket, setSocket, setOnlineUsers, notifications, setNotifications } = useUserState(); // user should be available after login/signup
-  console.log(notifications)
+  const { user, socket, setSocket, setOnlineUsers, setNotifications } = useUserState(); 
 
   useEffect(() => {
     if(user){
-      const socket = io("http://localhost:5000" , {
+      const socket = io("http://192.168.43.195:5000" , {
         query : {userId : user?._id}
       })
 
@@ -44,7 +43,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+        <Route index element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
         </Route>

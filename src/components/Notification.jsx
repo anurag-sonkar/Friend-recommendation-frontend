@@ -47,34 +47,34 @@ function Notification() {
                 </div>
             )
         };
-    }) : [];
+    }) : [{
+        key: 'no-notifications',
+        label: (
+            <div className='text-center border px-4 py-1'>
+                <div className='text-md font-semibold'>No Notifications</div>
+            </div>
+        )
+    }]
 
     return (
-        <div>
-            <div className='relative'>
-                {notifications.length > 0 ? (
-                    <Dropdown
-                        menu={{
-                            items,
-                        }}
-                    >
-                        <a onClick={(e) => e.preventDefault()}>
-                            <Space>
-                                <BellTwoTone style={{ fontSize: "1.5rem" }} />
-                            </Space>
-                        </a>
-                    </Dropdown>
-                ) : (
-                    <Space>
-                        <BellTwoTone style={{ fontSize: "1.5rem" }} />
-                    </Space>
-                )}
+        <div className='relative'>
+            <div className=''>
+                <Dropdown
+                    menu={{
+                        items,
+                    }}
+                >
+                    <a onClick={(e) => e.preventDefault()}>
+                        <Space>
+                            <BellTwoTone style={{ fontSize: "1.5rem" }} />
+                        </Space>
+                    </a>
+                </Dropdown>
             </div>
-            {notifications.length > 0 && (
-                <div className={`bg-red-500 text-gray-950 font-semibold absolute rounded-full px-1 text-sm right-2 top-1`}>
-                    {notifications.length}
-                </div>
-            )}
+
+            <div className="notification">
+                {notifications.length}
+            </div>
         </div>
     );
 }

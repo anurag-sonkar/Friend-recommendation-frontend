@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React , {useState} from 'react'
 import { auth_base_url } from '../utils/base_url';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ function Signup() {
         email: '',
         password: '',
     });
+    const naviagte = useNavigate()
 
     const [errors , setErrors] = useState({})
 
@@ -51,7 +52,8 @@ function Signup() {
                 console.log(data)
 
                 localStorage.setItem('user-info', JSON.stringify(data));
-                alert('User registered successfully');
+                // alert('User registered successfully');
+                naviagte('/')
 
                 // Reset form fields
                 const resetForm = {};

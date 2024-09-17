@@ -1,5 +1,7 @@
-export const auth_base_url = "http://localhost:5000/auth"
-export const user_base_url = "http://localhost:5000/user"
+export const auth_base_url = "http://192.168.43.195:5000/auth"
+export const user_base_url = "http://192.168.43.195:5000/user"
+// export const auth_base_url = "http://localhost:5000/auth"
+// export const user_base_url = "http://localhost:5000/user"
 
 
 // export const auth_base_url = "https://ecommerce-mern-shopkart-backend.onrender.com"
