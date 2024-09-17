@@ -5,7 +5,7 @@ import Notification from './Notification'
 
 function Header() {
     const {user} = useUserState()
-    console.log(user)
+    // console.log(user)
   return (
       <nav className='flex items-center justify-between bg-blue-100 px-4'>
       <Slider />

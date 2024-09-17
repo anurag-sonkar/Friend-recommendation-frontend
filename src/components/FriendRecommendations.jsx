@@ -6,19 +6,15 @@ import { getConfig } from '../utils/config';
 const FriendRecommendations = () => {
     const [recommendations, setRecommendations] = useState([]);
 
-    useEffect(() => {
-        const fetchRecommendations = async () => {
-            try {
-                const { data } = await axios.get(`${user_base_url}/recommendations`, getConfig());
-                setRecommendations(data.recommendations);
-            } catch (error) {
-                console.error('Error fetching recommendations:', error);
-            }
-        };
-
-        fetchRecommendations();
-    }, []);
-
+    const fetchRecommendations = async () => {
+        try {
+            const { data } = await axios.get(`${user_base_url}/recommendations`, getConfig());
+            setRecommendations(data.recommendations);
+        } catch (error) {
+            console.error('Error fetching recommendations:', error);
+        }
+    };
+    
     const handleSendFriendRequest = async (userId) => {
         try {
             await axios.post(`${user_base_url}/send-request`, { recipientId: userId }, getConfig());
@@ -27,6 +23,11 @@ const FriendRecommendations = () => {
             console.error('Error sending friend request:', error);
         }
     };
+    
+    useEffect(() => {
+
+        fetchRecommendations();
+    }, []);
 
     return (
         <div className="">

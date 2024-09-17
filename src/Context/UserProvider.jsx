@@ -10,6 +10,8 @@ export const useUserState = ()=> {
 
 const UserContextProvider = (props)=>{
     const [user , setUser] = useState()
+    const [socket , setSocket] = useState()
+    const [onlineUsers , setOnlineUsers] = useState()
     // const navigate = useNavigate()
 
 //     useEffect(
@@ -32,7 +34,7 @@ useEffect(
     },[]
 )
 
-    return <UserContext.Provider value={{user , setUser}}>
+    return <UserContext.Provider value={{ user, setUser, socket, setSocket, onlineUsers, setOnlineUsers }}>
         {props.children}
     </UserContext.Provider>
 }
